@@ -195,5 +195,25 @@ On: (parent):
   test_tag
 ```
 
+## gitslaveを利用しているリポジトリのclone
+
+では、最後にgitslaveを利用しているリポジトリを他の人がcloneしてくるときの操作の紹介です。
+
+```bash:
+$ gits clone <path-to-repository> parent2
+Cloning into 'parent2'...
+done.
+Cloning into './lib/bootstrap'...
+```
+
+これで、bootstrapリポジトリの取得も同時に実行してくれます。
+
 ## まとめ
 
+以上、非常に簡単ですがgitslaveについてまとめてみました。
+gitslaveは以下のような利用用途に向いています。
+
+* 複数のリポジトリを一つのリポジトリ上で利用したい。
+* 親リポジトリだけでなく子リポジトリも同じタイミングで修正したり、ブランチを切ったり、タグを打ったりする。
+
+もし、gitslave実際の運用で使っているよ！等ありましたら、是非教えてください！！
