@@ -1,13 +1,13 @@
 gitslaveで複数のリポジトリを管理する
 
 この記事は [Git Advent Calendar / Jun.](http://qiita.com/advent-calendar/git) 25日目の記事です！
-22日目は[rosylilly](http://qiita.com/users/rosylilly)さんの「[複数人での Git 開発に便利な 3 つのコマンド](http://qiita.com/items/9648ad2c8aa53465372b)」でした。
+24日目は[rosylilly](http://qiita.com/users/rosylilly)さんの「[複数人での Git 開発に便利な 3 つのコマンド](http://qiita.com/items/9648ad2c8aa53465372b)」でした。
 
 ## gitslaveとは
 
 gitslaveは[こちら](http://gitslave.sourceforge.net/)で公開されているツールで、あるgitリポジトリの中にサブディレクトリとして別のgitリポジトリを置いて管理するためのツールです。
 
-似たようなツールとしてgit submodule([sotarok](http://qiita.com/users/sotarok)さんの「[Git submodule の基礎](http://qiita.com/items/0d525e568a6088f6f6bb)」がとてもわかりやすい!)があります。
+似たようなツールとしてgit submodule([sotarok](http://qiita.com/users/sotarok)さんの「[Git submodule の基礎](http://qiita.com/items/0d525e568a6088f6f6bb)」がとてもわかりやすい！)があります。
 しかし、submoduleで管理しているリポジトリ内も頻繁に更新するような使い方だと、以下のような操作が結構煩雑です。
 
 * 親リポジトリとsubmoduleで管理している子リポジトリに一緒に変更を加えてcommitやpushをしたい。
@@ -133,7 +133,7 @@ On: (parent):
   #
   #     new file:   README.md
   #
-$ git commit -m "Modified some files."
+$ gits commit -m "Modified some files."
 On: ./lib/bootstrap:
   [master 3e23fe1] Modified some files.
    1 file changed, 1 insertion(+), 1 deletion(-)
@@ -207,6 +207,28 @@ Cloning into './lib/bootstrap'...
 ```
 
 これで、bootstrapリポジトリの取得も同時に実行してくれます。
+
+## pull
+
+ここまでくれば大体わかってくると思いますが、pullも本家と同様です。
+
+```bash:
+$ gits pull --rebase
+On: (parent2):
+  %REPO%From%REPO% /%REPO%home%REPO%/%REPO%yuichi%REPO%/%REPO%workspace%REPO%/./%REPO%parent%REPO%
+     %REPO%3dedceb%REPO%..%REPO%f18308b%REPO%  %REPO%branch%REPO%     -> %REPO%origin%REPO%/%REPO%branch%REPO%
+  %REPO%First%REPO%, %REPO%rewinding%REPO% %REPO%head%REPO% %REPO%to%REPO% %REPO%replay%REPO% %REPO%your%REPO% %REPO%work%REPO
+  %REPO%Fast%REPO%-%REPO%forwarded%REPO% %REPO%branch%REPO% %REPO%to%REPO% %REPO%f18308b46994637c81035dcc49fcc26b4e0f02f5%REPO
+On: ./lib/bootstrap:
+  From /home/yuichi/workspace/./parent/lib/%REPO%
+    branch     -> origin/branch
+  First, rewinding head to replay your work on top of it...
+  Fast-forwarded branch
+```
+
+これで、parentとbootstrapそれぞれのoriginから変更をpullしてくることができます。
+
+※ parent2の表示が変になっているのは原因不明です。。
 
 ## まとめ
 
