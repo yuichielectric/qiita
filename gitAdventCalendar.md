@@ -160,3 +160,40 @@ On: (parent):
 
 ## ブランチ作成
 
+次に、parentとbootstrapの両方にまとめてブランチを切ってみます。
+
+```bash:
+$ gits checkout -b branch
+On: (parent), ./lib/bootstrap:
+  Switched to a new branch 'branch'
+```
+
+これで両方のリポジトリ上でbranchというブランチが切れました。
+この後、修正、コミット、pushは前述の通り実行すれば、あたかも一つのリポジトリ上にいるかのように操作ができます。
+
+## タグ打ち
+
+タグも同様にしてまとめて打つことができます。
+
+```bash:
+$ gits tag test_tag
+$ gits tag
+On: ./lib/bootstrap:
+  test_tag
+  v1.0.0
+  v1.1.0
+  v1.1.1
+  v1.2.0
+  v1.3.0
+  v1.4.0
+  v2.0.0
+  v2.0.1
+  v2.0.2
+  v2.0.3
+  v2.0.4
+On: (parent):
+  test_tag
+```
+
+## まとめ
+
